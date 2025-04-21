@@ -1,10 +1,14 @@
 package database
 
 import (
+	"log"
+
+	"github.com/doneowth/models"
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
-	"log"
 )
+
+var DB *gorm.DB
 
 func Connect() {
 	db, err := gorm.Open(mysql.Open("root:my-secret-pw@/mydb"), &gorm.Config{})
@@ -12,6 +16,8 @@ func Connect() {
 	if err != nil {
 		panic("hi db issue")
 	}
-
-	log.Print(db)
+	
+	DB = db
+	db.AutoMigrate(models.User{})
+	log.Println("db connected")
 }
