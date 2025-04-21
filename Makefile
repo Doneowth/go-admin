@@ -26,7 +26,7 @@ lint:
 
 # Remove built binary
 clean:
-	rm -rf bin/
+	rm -rf tmp
 
 # Install Air for live-reload
 install-air:
